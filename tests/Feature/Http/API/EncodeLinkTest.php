@@ -61,7 +61,7 @@ it('it validates domain', function () {
         'domain' => 'nonexistent.com'
     ]);
 
-    $response->assertStatus(422);
+    $response->assertStatus(422)->assertJsonValidationErrors(['domain']);
 });
 
 it('it validates url', function () {
@@ -69,5 +69,5 @@ it('it validates url', function () {
         'url' => 'invalid-url'
     ]);
 
-    $response->assertStatus(422);
+    $response->assertStatus(422)->assertJsonValidationErrors(['url']);
 });
