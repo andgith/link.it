@@ -12,8 +12,22 @@ class Domain extends Model
     /** @use HasFactory<\Database\Factories\DomainFactory> */
     use HasFactory;
 
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
     protected $casts = [
         'default' => 'boolean',
+    ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
     ];
 
     /**
