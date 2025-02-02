@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Actions\DecodeLink;
 use App\Actions\EncodeLink;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\LinkResource;
 use App\Http\Requests\DecodeLinkRequest;
 use App\Http\Requests\EncodeLinkRequest;
-use App\Http\Resources\LinkResource;
 
 class LinkController extends Controller
 {
@@ -19,8 +18,10 @@ class LinkController extends Controller
         return LinkResource::make($link);
     }
 
-    public function decode(Request $request): JsonResponse
+    public function decode(DecodeLinkRequest $request, DecodeLink $action): LinkResource
     {
-        return response()->json();
+        return LinkResource::make(
+            $action->handle($request->fluent())
+        );
     }
 }
