@@ -15,6 +15,17 @@ class Link extends Model
     use HasFactory;
 
     /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected $casts = [
+        'clicks' => 'integer',
+        'expires_at' => 'datetime',
+        'last_clicked_at' => 'datetime',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
