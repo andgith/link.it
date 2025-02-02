@@ -41,9 +41,26 @@ DB_USERNAME=your_username
 DB_PASSWORD=your_password
 ```
 
-6. Run database migrations
+6. Run database migrations and seed default domains
 ```bash
-php artisan migrate
+php artisan migrate --seed
+```
+
+This will create 5 random test domains and set the first one as default. 
+
+To add more domains or customize existing ones, you can use Laravel Tinker:
+
+```bash
+php artisan tinker
+```
+
+Then in the tinker console:
+```php
+// Create a new domain
+\App\Models\Domain::create(['name' => 'your-domain.com']);
+
+// List all domains
+\App\Models\Domain::all();
 ```
 
 7. Start the development server
