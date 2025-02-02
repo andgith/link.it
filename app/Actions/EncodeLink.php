@@ -16,7 +16,7 @@ class EncodeLink
     public function handle(Fluent $attributes): Link
     {
         $domain = Domain::where('name', $attributes->domain)->firstOr(function () {
-            return Domain::default()->first();
+            return Domain::default()->firstOrFail();
         });
 
         $key = $this->keyGenerator->generate(fn (string $key) => Link::where('key', $key)->exists());
